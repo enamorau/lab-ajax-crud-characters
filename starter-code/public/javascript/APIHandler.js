@@ -12,8 +12,8 @@ class APIHandler {
     return axios.get("http://localhost:8000/characters")
   }
 
-  getOneRegister () {
-    this.axios.get("/characters/:id")
+  getOneRegister (id) {
+    return axios.get(`http://localhost:8000/characters/${id}`)
   }
 
   createOneRegister () {

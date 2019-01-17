@@ -9,22 +9,18 @@ $(document).ready(() => {
 
         const container = $(".characters-container")
 
+        let str = "";
         response.data.forEach(element => {
 
-          const characterInfoDiv = $(
-            
-      `<div class="character-info">
-       
+          str += `<div class="character-info">
                 <div class="name">name: ${element.name}</div>
                 <div class="occupation">occupation: ${element.occupation}</div>
                 <div class="weapon">weapon: ${element.weapon}</div>
-       
-       </div>`
-       )
-
-          container.append(characterInfoDiv)
+          </div>`;
 
         });
+
+        container.html(str);
 
       })
       .catch(error => {
@@ -34,7 +30,30 @@ $(document).ready(() => {
 
   document.getElementById('fetch-one').onclick = function () {
 
+    let id = document.getElementById('fetch-one-input').value
+
+
+    charactersAPI.getOneRegister(id)
+
+      .then(response => {
+        console.log('post successful and the response is: ', response);
+
+        const container2 = $(".characters-container")
+
+        let str2 = `<div class="character-info">
+              <div class="name">name: ${response.data.name}</div>
+              <div class="occupation">occupation: ${response.data.occupation}</div>
+              <div class="weapon">weapon: ${response.data.weapon}</div>
+        </div>`;
+
+        container2.html(str2);
+      })
+
+      .catch(error => {
+        console.log('Oh No! Error is: ', error);
+      })
   }
+
 
   document.getElementById('delete-one').onclick = function () {
 
